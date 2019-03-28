@@ -18,7 +18,7 @@ pipeline {
     }
     stage('prepare images') {
       steps {
-        sh 'bash ./jenkins/scripts/prepare-images.sh'
+        sh 'bash ./jenkins/scripts/prepare-image.sh'
       }
     }
     stage('push images to hub') {
