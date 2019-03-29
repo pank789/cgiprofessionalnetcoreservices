@@ -34,6 +34,13 @@ pipeline {
         sh 'bash ./jenkins/scripts/cleanup-container.sh'
       }
     }
+    stage('aws deploy') {
+      steps {
+        emailext(subject: '${JOB_NAME}', body: '${BUILD_LOG}')
+        input(message: 'would you like to deploy', ok: 'yes')
+        sh 'bash ./jenkins/scripts/aws-deploy.sh'
+      }
+    }
   }
   environment {
     CONTAINER_PORT = '9090'
